@@ -1,64 +1,44 @@
 import React, { useState, useEffect } from "react"
  
-
-
-
 export const TodolistFetch = () => {
 
   const [inputValue, setInputValue] = useState("");
   const [list, setList] = useState([]);
 
-  const getList = async () => {
-    fetch("http://assets.breatheco.de/apis/fake/todos/user/ihor", {
-       method :"GET",
-       redirect: "follow",
-   })
-   .then((response) => {
-               return response.json();
-           })
-   .then((data) => {
-       setlist(data);
-   })
-   .catch((error) => {
-       console.error(error);
-   });
-};
- useEffect(() => {
-  getList();
- }, [])
+//   const getList = async () => {
+//     fetch("http://assets.breatheco.de/apis/fake/todos/user/ihor2", {
+//        method :"GET",
+//        redirect: "follow",
+//    })
+//    .then((response) => {
+//                return response.json();
+//            })
+//    .then((data) => {
+//        setlist(data);
+//    })
+//    .catch((error) => {
+//        console.error(error);
+//    });
+// };
+//  useEffect(() => {
+//   getList();
+//  }, [])
 
- var myHeaders = new Headers();
- myHeaders.append("Content-Type", "application/json");
- 
- var raw = JSON.stringify([
-   {
-     "label": "Aprender HTML",
-     "done": false
-   },
-   {
-     "label": "Aprender CSS",
-     "done": false
-   },
-   {
-     "label": "Aprender JS",
-     "done": false
-   },
-   {
-     "label": "aprender React",
-     "done": false
-   },
-   {
-     "label": "aprantemento no funciona",
-     "done": true
-   }
- ]);
- 
- var requestOptions = {
-   method: 'PUT',
-   headers: myHeaders,
-   body: raw,
-   redirect: 'follow'
+
+ const url = 'http://assets.breatheco.de/apis/fake/todos/user/ihor2';
+ const requestOptions = { method: 'GET',redirect: "follow", };
+ const fetchApi = async () => {
+   const response = await fetch(url, requestOptions);
+   const responseJSON = await response.json();
+   setList(responseJSON);
  };
+
+ useEffect(() => {
+  fetchApi();
+}, []);
+
+
+
  
  fetch("http://assets.breatheco.de/apis/fake/todos/user/ihor", requestOptions)
    .then(response => response.json())
