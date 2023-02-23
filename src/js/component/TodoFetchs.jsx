@@ -16,11 +16,17 @@ const TodolistFetch = () => {
     const response = await fetch(url, request);
     if(response.ok){
       const responseJSON = await response.json();
-      responseJSON.map( (item) => {setList((e) => [...e, item.label]);} )
+      console.log(responseJSON);
+    let arrayTodos = [];
+    for (let i = 0 ; i < responseJSON.length; i++){
+      const element = responseJSON[i].label;     
+      arrayTodos.push(element);
+    };
+      setList(arrayTodos)  
+      console.log(list)
     }else {
       console.log("error")
     }
-   
   };
 
 useEffect(() => {
@@ -92,15 +98,10 @@ useEffect(() => {
       <h2 className="text-primary">Todos List</h2>
       <div className="list">
         <ul className="list-group">
-        {/* {list.map( (listElement, index) => {
-            return  <li key={index} className="list-group-item d-flex justify-content-between hidden-icon">
-                        {listElement}
-                    </li>
-            })} */}
           {list.map((listElement, index) => (
             <li
               key={index}className="list-group-item d-flex justify-content-between hidden-icon">
-              {listElement.label}
+              {listElement}
             </li>
           ))}
           <span className="list-group-item bg-light text-end fw-lighter">
