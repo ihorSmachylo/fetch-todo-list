@@ -1,5 +1,5 @@
 import React from "react";
-import Todolist from "./TodoList.jsx";
+import TodoFetchs from "./TodoFetchs.jsx";
 // import TodolistFetch from "./TodolistFetch.jsx";
 
 //include images into your bundle
@@ -10,7 +10,7 @@ const Home = () => {
 	return (
 		<div className="text-center">
 			
-			<Todolist/>	
+			<TodoFetchs/>
 			</div>
 	);
 };
